@@ -32,6 +32,10 @@
                         <h:outputText value="#{lista.senha}" />
                     </p:column>
                     
+                    <p:column headerText="Tipo" sortBy="#{lista.tipoa}" filterBy="#{lista.tipo}">
+                        <h:outputText value="#{lista.tipo}" />
+                    </p:column>
+                    
                     <p:column headerText="Opções" exportable="false">
                         <center>
                             
@@ -97,6 +101,17 @@
                     <p:inputText id="email" value="#{usuarioBean.usuario.email}" />
                    Senha:
                     <p:inputText id="senha" value="#{usuarioBean.usuario.senha}" />
+                    
+                     Tipo:
+                    <p:selectOneMenu id="tipo" value="#{usuarioBean.usuario.tipo}" style="width:125px" >
+                                     <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
+                                     <f:selectItem itemLabel="Bibliotecario" itemValue="Bibliotecario"/>
+                                     <f:selectItem itemLabel="Funcionario" itemValue="Funcionario"/>
+                                     <f:selectItem itemLabel="Professor" itemValue="Professor"/>
+                                     <f:selectItem itemLabel="Aluno" itemValue="Aluno"/>
+                                    
+                    </p:selectOneMenu>  
+                    
                 </p:panelGrid>  
                 <br/>
                 <p:commandButton value="Salvar" actionListener="#{usuarioBean.record}" onclick="record.hide()" alt="Record"/> 

@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TbUsuario.findByIdtbUsuario", query = "SELECT t FROM TbUsuario t WHERE t.idtbUsuario = :idtbUsuario")
     , @NamedQuery(name = "TbUsuario.findByNomeUsuario", query = "SELECT t FROM TbUsuario t WHERE t.nomeUsuario = :nomeUsuario")
     , @NamedQuery(name = "TbUsuario.findByEmail", query = "SELECT t FROM TbUsuario t WHERE t.email = :email")
-    , @NamedQuery(name = "TbUsuario.findBySenha", query = "SELECT t FROM TbUsuario t WHERE t.senha = :senha")})
+    , @NamedQuery(name = "TbUsuario.findBySenha", query = "SELECT t FROM TbUsuario t WHERE t.senha = :senha")
+    , @NamedQuery(name = "TbUsuario.findByTipo", query = "SELECT t FROM TbUsuario t WHERE t.tipo = :tipo")})
 public class TbUsuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,6 +52,9 @@ public class TbUsuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "senha")
     private String senha;
+    @Basic(optional = false)
+    @Column(name = "tipo")
+    private String tipo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbUsuarioidtbUsuario")
     private List<TbEmprestimo> tbEmprestimoList;
 
@@ -61,11 +65,12 @@ public class TbUsuario implements Serializable {
         this.idtbUsuario = idtbUsuario;
     }
 
-    public TbUsuario(Integer idtbUsuario, String nomeUsuario, String email, String senha) {
+    public TbUsuario(Integer idtbUsuario, String nomeUsuario, String email, String senha, String tipo) {
         this.idtbUsuario = idtbUsuario;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
+        this.tipo = tipo;
     }
 
     public Integer getIdtbUsuario() {
@@ -133,5 +138,19 @@ public class TbUsuario implements Serializable {
     public String toString() {
         return "br.rio.puc.inf.les.model.TbUsuario[ idtbUsuario=" + idtbUsuario + " ]";
     }
-    
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
 }
